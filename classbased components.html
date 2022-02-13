@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <h1>React Course</h1>
+    <p>Lorem ipsum</p>
+    
+    <div id='root'></div> </div>
+    <script type="text/babel">
+        //class composnent
+        class Details extends React.Component{
+            constructor(props){
+                super(props);
+                this.state={
+                    username:"cipherschool",
+                    courseName:"React",
+                    duration:18,
+                    completed:true
+                }
+            }
+        handleClick=()=>{
+            console.log('Inside handle function',this.state);
+            //this.state.completed=false;//never reassign a original value
+            //update the state values
+            //on each update the re-render gets triggered!
+        this.setState({
+            //not operator ! 
+            completed: !this.state.completed,
+        });
+        }
+        render(){
+            return(
+                <div>
+                    <Welcome username="mahesh"/>
+                    <h3>CourseName:{this.state.courseName}</h3>
+                    <p>Duration:{this.state.duration} days</p>
+                    <p>Duration:{ typeof(this.state.duration)  == 'string' ? this.state.duration : 'Invalid'}</p>
+                    
+                    <p>Completed:{this.state.completed ? 'yes' : 'No'}</p>
+                    <button onClick={this.handleClick}>Change Status</button>
+
+
+                </div>
+            )
+        }
+        }
+        //functional component
+        function Welcome(props){
+            return(
+                <h3>welcome to {props.username} </h3>
+            )
+        }
+        //new Detail();
+        ReactDOM.render(<Details/>,document.querySelector('#root'))
+    </script>
+</body>
+</html>
